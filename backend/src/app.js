@@ -63,6 +63,7 @@ if (fs.existsSync(frontendDistPath)) {
     if (req.originalUrl.startsWith('/api')) {
       return next();
     }
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
     res.sendFile(path.join(frontendDistPath, 'index.html'));
   });
 } else {
