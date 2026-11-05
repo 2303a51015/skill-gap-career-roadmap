@@ -7,23 +7,12 @@ const logger = require('./utils/logger');
 
 const app = express();
 
-// CORS setup
-const allowedOrigins = [
-  env.CLIENT_URL,
-  'http://localhost:5173',
-  'http://localhost:3000',
-  'http://127.0.0.1:5173'
-];
-
+// CORS setup - Allow all valid origins and same-host deployments
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (like mobile apps, curl, Postman)
-      if (!origin || allowedOrigins.includes(origin) || env.NODE_ENV === 'development') {
-        callback(null, true);
-      } else {
-        callback(new Error(`Origin ${origin} not allowed by CORS`));
-      }
+      // Allow all origins (development, production onrender.com, mobile browsers, curl)
+      callback(null, true);
     },
     credentials: true,
     methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
