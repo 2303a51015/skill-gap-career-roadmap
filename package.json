@@ -4,7 +4,7 @@
   "description": "AI-Based Skill Gap Analysis and Personalized Career Roadmap Generation System for a Given Resume",
   "scripts": {
     "postinstall": "npm run install:all",
-    "install:all": "npm install --prefix backend && npm install --prefix frontend",
+    "install:all": "npm install --prefix backend && npm install --prefix frontend --include=dev",
     "backend": "npm --prefix backend run dev",
     "frontend": "npm --prefix frontend run dev",
     "dev": "concurrently -n \"BACKEND,FRONTEND\" -c \"blue,cyan\" \"npm --prefix backend run dev\" \"npm --prefix frontend run dev\"",
